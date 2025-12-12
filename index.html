@@ -1,57 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anil Portfolio</title>
+    <title>Anil Sharma Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-<header>
-    <h1>Anil Portfolio</h1>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
-
-<section id="about">
-    <h2>About Me</h2>
-    <p>Hello! I am a beginner web developer learning HTML, CSS, and Git.</p>
-</section>
-
-<section id="projects">
-    <h2>My Projects</h2>
-
-    <div class="project-card">
-        <img src="img.png" alt="Project Screenshot">
-        <p>This is my first project – a simple portfolio website built using HTML and CSS.</p>
+    <!-- Dark/Light Mode Toggle -->
+    <div class="theme-toggle">
+        <button id="theme-button" aria-label="Toggle dark mode">
+            <i class="fas fa-moon"></i>
+        </button>
     </div>
 
-</section>
+    <!-- Header with Video Background -->
+    <header id="hero">
+        <video autoplay loop muted id="video-background">
+            <!-- This would be replaced with an actual video file -->
+            <source src="background.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
-<section id="contact">
-    <h2>Contact Me</h2>
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <span class="logo">Anil Sharma</span>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle" aria-expanded="false" aria-label="Toggle navigation" id="menu-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
 
-    <form>
-        <label>Name</label>
-        <input type="text" placeholder="Your Name">
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <h1 class="animate-text">Anil Kumar Sutihar Sharma</h1>
+            <p class="animate-text delay-1">Frontend Developer & UI/UX Enthusiast</p>
+            <div class="hero-buttons">
+                <button id="contact-button" class="btn-primary animate-text delay-2">Contact Me</button>
+                <button id="projects-button" class="btn-secondary animate-text delay-2">View My Projects</button>
+            </div>
 
-        <label>Email</label>
-        <input type="email" placeholder="Your Email">
+            <!-- Social Media Links -->
+            <div class="social-links animate-text delay-3">
+                <a href="#" aria-label="GitHub" class="social-link"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn" class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Twitter" class="social-link"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
 
-        <label>Message</label>
-        <textarea placeholder="Write your message"></textarea>
+        <!-- Scroll Progress Bar -->
+        <div class="scroll-indicator">
+            <div class="scroll-progress" id="scroll-progress"></div>
+        </div>
+    </header>
 
-        <button type="submit">Send</button>
-    </form>
-</section>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm a passionate frontend developer with 5+ years of experience creating responsive,
+                        user-friendly web applications. I specialize in HTML5, CSS3, JavaScript, and modern frameworks
+                        like React.</p>
+                    <p>When I'm not coding, you can find me hiking, reading tech blogs, or experimenting with new design
+                        tools.</p>
 
-<footer>
-    <p>&copy; 2025 My Portfolio</p>
-</footer>
+                    <!-- Enhanced Hover to show education -->
+                    <div class="education-hover">
+                        <div class="hover-card">
+                            <div class="hover-trigger">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>My Education</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="education-details">
+                                <h3>Education & Certifications</h3>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">2024-2027</div>
+                                        <div class="timeline-content">
+                                            <h4>BSC Hons Cs</h4>
+                                            <p>Herald College Kathmandu</p>
+                                            <p>Running</p>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-date">2022-2024</div>
+                                        <div class="timeline-content">
+                                            <h4>Computer Science of Management</h4>
+                                            <p>Herald International College, Basundhara</p>
+                                            <p>Pass out</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="about-image">
+                    <!-- Profile Image -->
+                    <div class="profile-image-container">
+                        <img src="profile.jpg" alt="Anil Sharma" class="profile-image">
+                        <div class="image-overlay">
+                            <p>Frontend Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <span class="skill-name">HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-css3-alt"></i>
+                            </div>
+                            <span class="skill-name">CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <span class="skill-name">JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <span class="skill-name">React</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Others</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-git"></i>
+                            </div>
+                            <span class="skill-name">Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <span class="skill-name">Webpack</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-figma"></i>
+                            </div>
+                            <span class="skill-name">Figma</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <span class="skill-name">Responsive Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div id="projects-grid" class="projects-grid">
+                <!-- Project cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>anil.codematrix@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+977 9767482921</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Address</h4>
+                            <p>Kathmandu, Nepal</p>
+                        </div>
+                    </div>
+                    <div class="social-links contact-social">
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+            <div id="form-message" class="form-message"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Anil Sharma. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
 </body>
+
 </html>
