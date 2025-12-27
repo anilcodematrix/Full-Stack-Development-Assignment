@@ -1,14 +1,47 @@
-<?php
-require_once 'includes/header.php'; // [cite: 6]
-?>
+<?php include 'db.php'; ?>
 
-<h2>Welcome to the Student Portfolio Manager!</h2> <p>This simple application helps manage student records and portfolio uploads for the third semester.</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<h3>Quick Actions:</h3>
-<ul>
-    <li><a href="add_student.php">Add Student Info</a></li> <li><a href="upload.php">Upload Portfolio File</a></li> <li><a href="students.php">View Students</a></li>
-</ul>
+<div class="container">
+<h2>Student List</h2>
 
-<?php
-require_once 'includes/footer.php'; // [cite: 6]
-?>
+<a href="add.php" class="add-btn">➕ Add New Student</a>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>Actions</th>
+    </tr>
+
+    <?php
+    $result = $conn->query("SELECT * FROM students ORDER BY id ASC");
+
+    while ($row = $result->fetch_assoc()):
+    ?>
+        <tr>
+            <td><?= $row['id']; ?></td>
+            <td><?= $row['name']; ?></td>
+            <td><?= $row['email']; ?></td>
+            <td><?= $row['course']; ?></td>
+            <td class="actions">
+                <a href="edit.php?id=<?= $row['id']; ?>">✏ Edit</a>
+                |
+                <a href="delete.php?id=<?= $row['id']; ?>" onclick="return confirm('Delete this student?');">🗑 Delete</a>
+            </td>
+        </tr>
+    <?php endwhile; ?>
+</table>
+
+</div>
+
+</body>
+</html>
