@@ -1,0 +1,642 @@
+/* Modern Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary: #4361ee;
+    --primary-dark: #3a56d4;
+    --secondary: #7209b7;
+    --success: #2ec4b6;
+    --danger: #e71d36;
+    --warning: #ff9f1c;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray: #6c757d;
+    --light-gray: #e9ecef;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--dark);
+}
+
+/* Container Styling */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    animation: containerAppear 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+/* Header Styling */
+h2 {
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    position: relative;
+    padding-bottom: 15px;
+    animation: slideDown 0.6s ease-out;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+}
+
+/* Add Button */
+.add-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    animation: buttonPulse 2s infinite;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.add-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), #6300a8);
+}
+
+/* Table Styling */
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+table th {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 18px 15px;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+}
+
+table th:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+table tr {
+    transition: var(--transition);
+}
+
+table tr:nth-child(even) {
+    background-color: rgba(248, 249, 250, 0.5);
+}
+
+table tr:hover {
+    background-color: rgba(67, 97, 238, 0.05);
+    transform: translateX(5px);
+}
+
+table td {
+    padding: 16px 15px;
+    border-bottom: 1px solid var(--light-gray);
+    animation: tableRowAppear 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+/* Staggered animation for table rows */
+table tr:nth-child(1) td {
+    animation-delay: 0.1s;
+}
+
+table tr:nth-child(2) td {
+    animation-delay: 0.2s;
+}
+
+table tr:nth-child(3) td {
+    animation-delay: 0.3s;
+}
+
+table tr:nth-child(4) td {
+    animation-delay: 0.4s;
+}
+
+table tr:nth-child(5) td {
+    animation-delay: 0.5s;
+}
+
+table tr:nth-child(6) td {
+    animation-delay: 0.6s;
+}
+
+/* Action Buttons */
+.actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.edit-btn {
+    background: rgba(46, 196, 182, 0.1);
+    color: var(--success);
+    border: 1px solid rgba(46, 196, 182, 0.3);
+}
+
+.edit-btn:hover {
+    background: var(--success);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(46, 196, 182, 0.3);
+}
+
+.delete-btn {
+    background: rgba(231, 29, 54, 0.1);
+    color: var(--danger);
+    border: 1px solid rgba(231, 29, 54, 0.3);
+}
+
+.delete-btn:hover {
+    background: var(--danger);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(231, 29, 54, 0.3);
+}
+
+/* Form Styling */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    animation: formSlideIn 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+    animation: formFieldAppear 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.form-group:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.form-group:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.form-group:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 1rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid var(--light-gray);
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: var(--transition);
+    background: white;
+    color: var(--dark);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-input:valid {
+    border-color: rgba(46, 196, 182, 0.5);
+}
+
+/* Floating Label Effect */
+.floating-label {
+    position: relative;
+}
+
+.floating-label label {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    color: var(--gray);
+    transition: var(--transition);
+    pointer-events: none;
+    background: white;
+    padding: 0 5px;
+}
+
+.floating-label .form-input:focus+label,
+.floating-label .form-input:not(:placeholder-shown)+label {
+    top: -10px;
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    animation: buttonAppear 0.8s ease-out;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+    background: linear-gradient(135deg, var(--primary-dark), #6300a8);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Success/Error Messages */
+.message {
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    animation: slideDown 0.5s ease-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.success-message {
+    background: rgba(46, 196, 182, 0.1);
+    color: var(--success);
+    border-left: 4px solid var(--success);
+}
+
+.error-message {
+    background: rgba(231, 29, 54, 0.1);
+    color: var(--danger);
+    border-left: 4px solid var(--danger);
+}
+
+/* Loading Animation */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: var(--light-gray);
+    margin-bottom: 20px;
+}
+
+.empty-state p {
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+/* Animations */
+@keyframes containerAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes buttonPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 5px 20px rgba(67, 97, 238, 0.5);
+    }
+}
+
+@keyframes tableRowAppear {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes formSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes formFieldAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes successCheckmark {
+    0% {
+        stroke-dashoffset: 100;
+        opacity: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 25px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    table th,
+    table td {
+        padding: 12px 10px;
+    }
+
+    .action-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-input {
+        padding: 14px 16px;
+    }
+}
+
+/* Additional styles for form hints and effects */
+.input-hint {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-top: 5px;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: var(--transition);
+}
+
+.form-group:focus-within .input-hint {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.form-group.focused label {
+    top: -10px;
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Form validation styles */
+.form-input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--danger);
+}
+
+.form-input:valid:not(:focus):not(:placeholder-shown) {
+    border-color: rgba(46, 196, 182, 0.5);
+}
+
+/* Confirmation dialog enhancement */
+.confirm-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.confirm-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    animation: containerAppear 0.4s ease-out;
+}
+
+.confirm-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.confirm-btn {
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.confirm-yes {
+    background: var(--danger);
+    color: white;
+}
+
+.confirm-yes:hover {
+    background: #c11a2f;
+    transform: translateY(-2px);
+}
+
+.confirm-no {
+    background: var(--light-gray);
+    color: var(--dark);
+}
+
+.confirm-no:hover {
+    background: #d8d8d8;
+    transform: translateY(-2px);
+}
