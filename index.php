@@ -1,0 +1,47 @@
+<?php include 'db.php'; ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+<h2>Student List</h2>
+
+<a href="add.php" class="add-btn">➕ Add New Student</a>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>Actions</th>
+    </tr>
+
+    <?php
+    $result = $conn->query("SELECT * FROM students ORDER BY id ASC");
+
+    while ($row = $result->fetch_assoc()):
+    ?>
+        <tr>
+            <td><?= $row['id']; ?></td>
+            <td><?= $row['name']; ?></td>
+            <td><?= $row['email']; ?></td>
+            <td><?= $row['course']; ?></td>
+            <td class="actions">
+                <a href="edit.php?id=<?= $row['id']; ?>">✏ Edit</a>
+                |
+                <a href="delete.php?id=<?= $row['id']; ?>" onclick="return confirm('Delete this student?');">🗑 Delete</a>
+            </td>
+        </tr>
+    <?php endwhile; ?>
+</table>
+
+</div>
+
+</body>
+</html>
