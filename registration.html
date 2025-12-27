@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+    </div>
+    
+    <div class="container">
+        <div class="registration-form">
+            <div class="form-header">
+                <div class="logo">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h1>Create Account</h1>
+                <p class="form-subtitle">Join our community today</p>
+            </div>
+            
+            <form action="registration.php" method="POST" id="registrationForm">
+                <div class="form-group floating-label">
+                    <input type="text" id="name" name="name"
+                           value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name'], ENT_QUOTES, 'UTF-8') : ''; ?>"
+                           placeholder="Full Name">
+                    <label for="name">
+                        <i class="fas fa-user"></i>
+                        <span>Full Name</span>
+                    </label>
+                    <div class="focus-line"></div>
+                    <span class="error"><?php echo isset($errors['name']) ? $errors['name'] : ''; ?></span>
+                </div>
+                
+                <div class="form-group floating-label">
+                    <input type="email" id="email" name="email"
+                           value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email'], ENT_QUOTES, 'UTF-8') : ''; ?>"
+                           placeholder="Email Address">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email Address</span>
+                    </label>
+                    <div class="focus-line"></div>
+                    <span class="error"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span>
+                </div>
+                
+                <div class="form-group floating-label">
+                    <input type="password" id="password" name="password" placeholder="Password">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        <span>Password</span>
+                    </label>
+                    <button type="button" class="toggle-password" id="togglePassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <div class="focus-line"></div>
+                    <small>Minimum 8 characters, at least one uppercase, lowercase, number and special character</small>
+                    
+                    <div class="password-strength-container">
+                        <div class="strength-labels">
+                            <span>Password Strength:</span>
+                            <span id="strengthText">None</span>
+                        </div>
+                        <div class="strength-bar">
+                            <div class="strength-progress" id="strengthProgress"></div>
+                        </div>
+                    </div>
+                    
+                    <span class="error"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
+                </div>
+                
+                <div class="form-group floating-label">
+                    <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+                    <label for="confirm_password">
+                        <i class="fas fa-lock"></i>
+                        <span>Confirm Password</span>
+                    </label>
+                    <button type="button" class="toggle-password" id="toggleConfirmPassword">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <div class="focus-line"></div>
+                    <span class="error"><?php echo isset($errors['confirm_password']) ? $errors['confirm_password'] : ''; ?></span>
+                </div>
+                
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="terms" name="terms" <?php echo isset($_POST['terms']) ? 'checked' : ''; ?>>
+                    <label for="terms">
+                        I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                    <span class="error"><?php echo isset($errors['terms']) ? $errors['terms'] : ''; ?></span>
+                </div> 
+                
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <span class="btn-text">Register Now</span>
+                    <div class="btn-loader">
+                        <div class="spinner"></div>
+                    </div>
+                    <i class="fas fa-arrow-right btn-icon"></i>
+                </button>
+                
+                <div class="form-footer">
+                    <p>Already have an account? <a href="#">Sign In</a></p>
+                </div>
+                
+                <?php if (isset($success_message)): ?>
+                    <div class="success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <?php echo $success_message; ?>
+                    </div>
+                <?php endif; ?>
+                
+                <?php if (isset($error_message)): ?>
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <?php echo $error_message; ?>
+                    </div>
+                <?php endif; ?>
+            </form>
+        </div>
+        
+        <div class="json-display">
+            <div class="json-header">
+                <h2>
+                    <i class="fas fa-users"></i>
+                    Registered Users
+                </h2>
+                <button class="refresh-btn" id="refreshJson">
+                    <i class="fas fa-sync-alt"></i>
+                    Refresh
+                </button>
+            </div>
+            <p class="json-subtitle">JSON Data Preview</p>
+            <div class="json-container">
+                <pre id="jsonOutput"><?php 
+                    if (file_exists('users.json')) {
+                        echo htmlspecialchars(file_get_contents('users.json'), ENT_QUOTES, 'UTF-8');
+                    } else {
+                        echo '[]';
+                    }
+                ?></pre>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <i class="fas fa-user-friends"></i>
+                    <span>Total Users: <strong id="userCount">0</strong></span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Last Updated: <strong id="lastUpdated">Just now</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
